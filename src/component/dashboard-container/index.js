@@ -1,3 +1,4 @@
+import './_dashboard-container.scss';
 import React from 'react';
 import uuid from 'uuid/v1';
 import ExpenseCreateForm from '../expense-create-form/index.js';
@@ -25,7 +26,7 @@ class DashboardContainer extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='dashboard-container'>
         <ExpenseCreateForm handleExpenseCreate={ this.expenseCreate } />
         <p> I am the dashboard </p>
       </div>
