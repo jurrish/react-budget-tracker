@@ -5,6 +5,10 @@ const HTMLPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval',
+  //this tells webpack to handle a 404 by displaying our index.html instead of an error
+  devServer: {
+    historyApiFallback: true,
+  },
   entry: `${__dirname}/src/main.js`,
   output: {
     //what to name the bundle
