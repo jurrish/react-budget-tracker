@@ -2,6 +2,7 @@ import './_dashboard-container.scss';
 import React from 'react';
 import uuid from 'uuid/v1';
 import ExpenseCreateForm from '../expense-create-form/index.js';
+import ExpenseList from '../expense-list/index.js';
 
 class DashboardContainer extends React.Component {
   //will have VIEW state
@@ -10,6 +11,7 @@ class DashboardContainer extends React.Component {
     console.log('app', this.props)
 
     this.expenseCreate = this.expenseCreate.bind(this);
+    this.expenseRemove = this.expenseRemove.bind(this);
   }
 
   //expense will have a id, title, and price
@@ -24,11 +26,25 @@ class DashboardContainer extends React.Component {
     }))
   }
 
+//app.setState(somePreviousState => { expenses: previousState.expenses....yadda})
+  expenseRemove (expense) {
+    let {app} = this.props;
+    app.setState(prevState => ({
+      expenses: prevState.expenses.filter((item) => {
+        return item.id !== expense.id
+      })
+    }));
+  }
+
   render () {
+    let {app} = this.props;
     return (
       <div className='dashboard-container'>
         <ExpenseCreateForm handleExpenseCreate={ this.expenseCreate } />
-        <p> I am the dashboard </p>
+        <ExpenseList
+          expenseRemove={ this.expenseRemove }
+          expenses={ app.state.expenses }
+        />
       </div>
     )
   }

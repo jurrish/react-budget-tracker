@@ -8,4 +8,13 @@ describe('testing ExpenseCreateForm', () => {
     expect(wrapper.state('title')).toBe('');
     expect(wrapper.state('price')).toBe(0);
   })
+
+  test('expect submit to invoke handleExpenseCreate', () => {
+    let expenseCreate = (expense) => {
+      expect(expense.title).toEqual('');
+      expect(expense.price).toEqual(0);
+    }
+    let wrapper = shallow(<ExpenseCreateForm handleExpenseCreate={expenseCreate} />)
+    wrapper.find('form').simulate('submit');
+  })
 })
