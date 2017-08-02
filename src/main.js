@@ -1,11 +1,12 @@
 //npm modules
 import React from 'react';
 import ReactDom from 'react-dom';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 //app modules
 import AboutContainer from './component/about-container/index.js'
 import DashboardContainer from './component/dashboard-container/index.js'
+import Navbar from './component/navbar/index.js';
 
 import '../src/style/_main.scss';
 

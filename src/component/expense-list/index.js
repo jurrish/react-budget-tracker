@@ -1,4 +1,5 @@
 import React from 'react';
+import ExpenseCreateForm from '../expense-create-form/index.js';
 
 class ExpenseList extends React.Component {
   render () {
@@ -14,6 +15,11 @@ class ExpenseList extends React.Component {
             </button>
             <p> title: {item.title} </p>
             <p> price: {item.price} </p>
+
+            <ExpenseCreateForm expenseCreate={ (expense) => {
+              expense.id = item.id
+              this.props.expenseUpdate(expense)
+            }} />
             </li>
           )}
         </ul>

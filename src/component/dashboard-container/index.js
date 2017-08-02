@@ -3,6 +3,8 @@ import React from 'react';
 import uuid from 'uuid/v1';
 import ExpenseCreateForm from '../expense-create-form/index.js';
 import ExpenseList from '../expense-list/index.js';
+import Navbar from '../navbar/index.js';
+
 
 class DashboardContainer extends React.Component {
   //will have VIEW state
@@ -12,6 +14,7 @@ class DashboardContainer extends React.Component {
 
     this.expenseCreate = this.expenseCreate.bind(this);
     this.expenseRemove = this.expenseRemove.bind(this);
+    this.expenseUpdate = this.expenseUpdate.bind(this);
   }
 
   //expense will have a id, title, and price
@@ -36,10 +39,20 @@ class DashboardContainer extends React.Component {
     }));
   }
 
+  expenseUpdate (expense) {
+    let {app} = this.props;
+    app.setState(prevState => ({
+      expenses: prevState.expenses.map((item) => {
+        return item.id == expense.id ? expense : item
+      })
+    }))
+  }
+
   render () {
     let {app} = this.props;
     return (
       <div className='dashboard-container'>
+      <Navbar />
         <ExpenseCreateForm handleExpenseCreate={ this.expenseCreate } />
         <ExpenseList
           expenseRemove={ this.expenseRemove }
